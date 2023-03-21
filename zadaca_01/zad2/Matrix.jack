@@ -1,0 +1,212 @@
+class Matrix
+{
+    field Array A;
+    field int n, n2;
+    
+    constructor Matrix new (int m)
+    {
+        var int i, j;
+        let n = m;
+        let n2 = n * n;
+        let A = Array.new(n2);
+        let i = 0;
+        let j = 0;
+
+        while(i < n)
+        {
+            let j = 0;
+
+            while(j < n)
+            {
+                let A[i * n +j] = 0;
+                let j = j + 1;
+            }
+
+            let i =i + 1;
+        }
+
+        return this;
+    }
+
+    method void printMatrix(){
+        var int i, j;
+        let i = 0;
+        let j = 0;
+
+        while(i < n)
+        {
+            let j = 0;
+
+            while(j < n)
+            {
+                do Output.printInt(A[i * n + j]);
+                let j = j + 1;
+            }
+
+            do Output.println();
+
+            let i = i + 1;
+        }
+
+        return;
+    }
+
+    method void dispose()
+    {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    //vraća elem na poziciji(i,j)
+    method int getElem(int i, int j)
+    {
+        var int index;
+        let index = i * n + j;
+
+        return A[index];
+    }
+
+    method void setElem(int i, int j, int a){
+
+        let A[i*n+j] = a;
+
+        return;
+    }
+
+    method Matrix add(Matrix B)
+    {
+        var int i, j, index, a;
+        var Matrix C;
+
+        let C = Matrix.new(n);
+        let i = 0;
+
+        while(i < n)
+        {
+            let j = 0;
+
+            while (j < n)
+            {
+                let index = i * n + j;
+                let  a = B.getElem(i, j) + A[i * n + j]; 
+                do C.setElem(i, j, a);
+                
+                let j = j + 1;
+            }
+
+            let i = i + 1;
+        }
+
+        return C;
+    }
+
+    method Matrix multScalar(int alpha)
+    {
+        var Matrix C;
+        var int i,j;
+        let C = Matrix.new(n);
+        let i = 0;
+        let j = 0;
+
+        while(i < n)
+        {
+            let j = 0;
+
+            while(j < n)
+            {
+                do C.setElem(i,j, A[i * n +j] * alpha);
+                let j = j + 1;
+            }
+
+            let i =i + 1;
+        }
+
+        return C;
+    }
+    
+    method Matrix multMat(Matrix B)
+    {
+        var Matrix C;
+        var int i,j,k;
+        let C = Matrix.new(n);
+        let i = 0;
+        let j = 0;
+        let k = 0;
+
+        while (i < n)
+        {
+            let j = 0;
+
+            while(j < n)
+            {
+                let k = 0;
+
+                while (k < n){
+                    do C.setElem(i, j, (C.getElem(i,j) + (A[i * n + k] * B.getElem(k, j))));
+                    let k = k+1;
+                }
+
+                let j = j+1;
+            }
+            let i = i+1;
+        }
+
+        return C;
+    }
+
+    method Matrix norm()
+    {
+        var int i,j,k,m,rez;
+        let i = 0;
+        let j = 0;
+        let k = 0;
+
+        while (i < n)
+        {
+            let j = 0;
+
+            while(j < n)
+            {
+                let m = (A[i * n + j])*(A[i * n + j]);
+                let k = k + m;
+                let j = j+1;
+            }
+
+            let i = i+1;
+        }
+        let rez = Math.sqrt(k);
+
+        return rez;
+    }
+
+    method Matrix eye()
+    {
+        var Matrix I;
+        var int i,j;
+        let i = 0;
+        let j = 0;
+        let I = Matrix.new(n);
+
+        while(i < n)
+        {
+            let j = 0;
+
+            while(j < n)
+            {
+                if (i = j)
+                {
+                    do I.setElem(i,j,1);
+                }
+                else
+                {
+                    let A[i * n +j] = 0;
+                }
+                let j = j + 1;
+            }
+
+            let i =i + 1;
+        }
+
+        return I;
+    }
+}

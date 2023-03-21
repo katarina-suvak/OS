@@ -1,0 +1,55 @@
+class Main
+{
+    function void main()
+    {
+        var int n, norma;
+        var Matrix M,A,C,D,F,G,T;
+        let n = 3;
+        
+        let M = Matrix.new(n);
+        let A = Matrix.new(n);
+        
+        do M.setElem(0,0,1);
+        do M.setElem(1,1,8);
+        do M.setElem(2,1,2);
+        do M.setElem(2,0,3);
+        do M.setElem(1,2,5);
+
+        do A.setElem(1,2,3);
+        do A.setElem(2,2,1);
+        do A.setElem(0,2,5);
+        do A.setElem(1,2,7);
+        do A.setElem(1,0,2);
+
+
+        do M.printMatrix();
+        do Output.println();
+
+        do A.printMatrix();
+        do Output.println();
+
+        let C = M.add(A);
+        do C.printMatrix();
+        do Output.println();
+
+        let D = C.multScalar(2);
+        do D.printMatrix();
+        do Output.println();
+
+        let F = M.multMat(A);
+        do F.printMatrix();
+        do Output.println();
+
+        let norma = D.norm();
+        do Output.printInt(norma);
+        do Output.println();
+
+        let G = D.eye();
+        do G.printMatrix();
+
+        do M.dispose();
+        do A.dispose();
+
+        return;
+    }
+}

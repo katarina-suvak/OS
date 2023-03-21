@@ -1,0 +1,168 @@
+function Parentheses.IsClosed 8
+push argument 0
+call String.length 1
+pop local 2
+push constant 0
+pop local 3
+push constant 4
+call String.new 1
+push constant 116
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+pop local 6
+push local 2
+call String.new 1
+pop local 0
+push local 2
+call String.new 1
+pop local 1
+label WHILE_EXP0
+push local 3
+push local 2
+lt
+not
+if-goto WHILE_END0
+push constant 0
+pop local 4
+push argument 0
+push local 3
+call String.charAt 2
+push constant 91
+eq
+push argument 0
+push local 3
+call String.charAt 2
+push constant 40
+eq
+or
+push argument 0
+push local 3
+call String.charAt 2
+push constant 123
+eq
+or
+if-goto IF_TRUE0
+goto IF_FALSE0
+label IF_TRUE0
+push local 1
+push argument 0
+push local 3
+call String.charAt 2
+call String.appendChar 2
+pop temp 0
+push local 4
+push constant 1
+add
+pop local 4
+goto IF_END0
+label IF_FALSE0
+push local 1
+call String.length 1
+pop local 5
+push local 5
+push constant 0
+gt
+if-goto IF_TRUE1
+goto IF_FALSE1
+label IF_TRUE1
+push local 1
+push local 5
+push constant 1
+sub
+call String.charAt 2
+pop local 7
+push argument 0
+push local 3
+call String.charAt 2
+call Output.printChar 1
+pop temp 0
+push local 7
+call Output.printChar 1
+pop temp 0
+call Output.println 0
+pop temp 0
+push argument 0
+push local 3
+call String.charAt 2
+push constant 93
+eq
+push local 7
+push constant 91
+eq
+and
+push argument 0
+push local 3
+call String.charAt 2
+push constant 41
+eq
+push local 7
+push constant 40
+eq
+and
+or
+push argument 0
+push local 3
+call String.charAt 2
+push constant 125
+eq
+push local 7
+and
+push constant 123
+eq
+or
+if-goto IF_TRUE2
+goto IF_FALSE2
+label IF_TRUE2
+push local 1
+call String.eraseLastChar 1
+pop temp 0
+label IF_FALSE2
+label IF_FALSE1
+label IF_END0
+push local 1
+call String.length 1
+push constant 0
+eq
+if-goto IF_TRUE3
+goto IF_FALSE3
+label IF_TRUE3
+push constant 4
+call String.new 1
+push constant 116
+call String.appendChar 2
+push constant 114
+call String.appendChar 2
+push constant 117
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+pop local 6
+goto IF_END3
+label IF_FALSE3
+push constant 5
+call String.new 1
+push constant 102
+call String.appendChar 2
+push constant 97
+call String.appendChar 2
+push constant 108
+call String.appendChar 2
+push constant 115
+call String.appendChar 2
+push constant 101
+call String.appendChar 2
+pop local 6
+label IF_END3
+push local 3
+push constant 1
+add
+pop local 3
+goto WHILE_EXP0
+label WHILE_END0
+push local 6
+return

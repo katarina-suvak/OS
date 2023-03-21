@@ -1,0 +1,52 @@
+class Parentheses 
+{
+    
+    function String IsClosed(String expression)
+    { 
+        var String parantheses, s;
+        var int len, i, lenS;
+        var String closed;
+        var char top;
+
+        let len = expression.length();
+        let i = 0;
+        
+        let closed = "true";
+        let parantheses = String.new(len);
+        let s = String.new(len);
+
+        while(i < len)
+        {
+            if ( (expression.charAt(i)  = 91 ) | (expression.charAt(i) = 40 ) | (expression.charAt(i) = 123) )
+            {
+                do s.appendChar(expression.charAt(i));
+            }
+            else
+            {
+                let lenS = s.length();
+                if (lenS > 0){
+
+                    let top = s.charAt(lenS - 1);
+
+                    if ( ( (expression.charAt(i)  = 93 ) & (top = 91) ) | ((expression.charAt(i) = 41 ) & (top = 40)) | ((expression.charAt(i) = 125) & top = 123) )
+                    {
+                        do s.eraseLastChar();
+                    }
+
+                }
+            }
+
+            if(s.length() = 0){
+                let closed = "true";
+            }
+            else
+            {
+                let closed = "false";
+            }
+
+            let i = i + 1;
+        }
+
+        return closed;
+    }
+}
