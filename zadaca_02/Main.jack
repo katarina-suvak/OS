@@ -1,0 +1,39 @@
+class Main
+{
+    function void main()
+    {
+        var int x ,y, logA, logB, logC, powA, powB, powC;
+        let x = 81;
+        let y = 9;
+
+        let logA = 1024;
+        let logB = 8;
+        let logC = 9;
+
+        let powA = 2;
+        let powB = 3;
+        let powC = 5;
+
+        
+        //divide
+        do Output.printInt(Math.divide(x,y));
+        do Output.println();
+
+        do Output.printInt(Math.log(logA));
+        do Output.println();
+        do Output.printInt(Math.log(logB));
+        do Output.println();
+        do Output.printInt(Math.log(logC));
+        do Output.println();
+        
+        do Output.printInt(Math.pow(powA, powB));
+        do Output.println();
+        do Output.printInt(Math.pow(powB, powA));
+        do Output.println();
+        do Output.printInt(Math.pow(powC, powA));
+        do Output.println();
+
+        return;
+    }
+
+}
