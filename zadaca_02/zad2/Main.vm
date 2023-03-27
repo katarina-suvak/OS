@@ -1,0 +1,13 @@
+function Main.main 3
+push constant 5
+call Array.new 1
+pop local 0
+push constant 15
+call Array.new 1
+pop local 1
+call A.dispose 0
+pop temp 0
+call B.dispose 0
+pop temp 0
+push constant 0
+return

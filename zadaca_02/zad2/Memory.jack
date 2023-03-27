@@ -1,0 +1,100 @@
+/**
+ * Memory operations library.
+ */ 
+class Memory
+{
+    static Array ram;
+    static Array freeList;
+    
+    /** Initializes memory parameters. */
+    function void init()
+    {
+        let ram = 0;
+        
+        // set heap and free list to 2048 (heap top)
+        let freeList = 2048;
+        
+        // initial values
+        let freeList[0] = 0;     // no next block at start
+        let freeList[1] = 14334; // initial block length, 16384 - 2048 - 1
+        
+        return;
+    }
+
+    /** Returns the value of the main memory at the given address. */
+    function int peek(int address)
+    {
+        return ram[address];
+    }
+
+    /** Sets the value of the main memory at this address
+     *  to the given value. */
+    function void poke(int address, int value)
+    {
+        let ram[address] = value;
+        return;
+    }
+
+    /** finds and allocates from the heap a memory block of the 
+     *  specified size and returns a reference to its base address. */
+     function int alloc(int size)
+     {
+         var int curr, next, len, new;
+         let curr = freeList;
+         
+         // iterate through all blocks
+         while (~(curr = 0))
+         {
+             let next = ram[curr];
+             let len = ram[curr + 1];
+             // check if current block is large enough
+             if (~(len < (size + 2))) // len >= size + 2
+             {
+                 // the block is large enough, use it (first fit) 
+                 let ram[curr + 1] = len - size - 2;
+                 
+                 let new = curr + len - size;
+                 let ram[new] = 0;
+                 let ram[new + 1] = size;
+                 
+                 // return first element
+                 return new + 2;
+             }            
+             
+             let curr = next;
+         }
+         return freeList;
+     }
+
+    /** De-allocates the given object and frees its space. */
+    function void deAlloc(int object)
+    {
+        var int next, curr;
+        let curr = freeList;
+        let object = object - 2;
+
+        while (~(curr = 0))
+        {
+            let  next = curr;
+            let curr = ram[curr];
+        }
+
+        let ram[next] = object;
+        
+        return;
+    } 
+
+    function void memcpy(int q, int dest, int d)
+    {
+        var int i;
+        let i = 0;
+
+        while (i < d)
+        {
+            do Memory.poke((dest+i), ram[q+i]);
+            let i = i + 1;
+        }
+
+        return;
+    }
+}
