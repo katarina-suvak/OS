@@ -78,6 +78,11 @@ class Math
 
         while(i < 16)
         {
+            if (twoToThe[i]<x & x<twoToThe[i+1])
+            {
+                return i;
+
+            }
             if (twoToThe[i] = x)
             {
                 return i;
