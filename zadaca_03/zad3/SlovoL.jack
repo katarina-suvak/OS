@@ -1,0 +1,91 @@
+class SlovoL
+{
+    //lokacija
+    field int x, y;
+
+    constructor SlovoL new(int lokx, int loky)
+    {
+        let x = lokx;
+        let y = loky;
+
+        return this;
+    }
+
+    method void dispose() {
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void draw()
+    {
+        //slovo L je sačinjen od 2 pravokutnika :
+        //1.pravokutnik duljine 30, širine 10
+        //2.pravokunik duljine 10, širine 40
+        do Screen.setColor(true);
+        do Screen.drawRectangle(x,y, x + 30, y + 10);
+        do Screen.drawRectangle(x, y - 40, x + 10, y);
+        return;
+    }
+
+    method void erease()
+    {
+        do Screen.setColor(false);
+        do Screen.drawRectangle(x, y, x + 30, y + 10);
+        do Screen.drawRectangle(x, y - 40, x + 10, y);
+        do Screen.setColor(true);
+        return;
+    }
+
+    method void lijevo()
+    {
+        if (x > 0) {
+            do erease();
+
+            let x = x - 2;
+
+            do Screen.drawRectangle(x, y, x + 30, y + 10);
+            do Screen.drawRectangle(x, y - 40, x + 10, y);
+         }
+         return;
+    }
+
+    method void desno() {
+        if ((x + 32) < 512) {
+           
+            do erease();
+            let x = x + 2;
+           
+            do Screen.drawRectangle(x, y, x + 30, y + 10);
+            do Screen.drawRectangle(x, y - 40, x + 10, y);
+        }
+        return;
+    }
+
+    method void gore()
+    {
+        if ((y - 40) > 0 )
+        {
+            do erease();
+            let y = y - 2;
+
+            do Screen.drawRectangle(x, y, x + 30, y + 10);
+            do Screen.drawRectangle(x, y - 40, x + 10, y);
+
+        }
+        return;
+    }
+
+    method void dolje()
+    {
+        if ((y + 12 < 255))
+        {
+            do erease();
+            let y = y + 2;
+
+            do Screen.drawRectangle(x, y, x + 30, y + 10);
+            do Screen.drawRectangle(x, y - 40, x + 10, y);
+        }
+
+        return;
+    }
+}

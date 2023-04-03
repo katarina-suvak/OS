@@ -1,0 +1,15 @@
+class Main
+{
+    function void main()
+    {
+        var Game game;
+        var SlovoL L;
+
+        let game = Game.new();
+        do game.runL();
+        
+        do game.dispose();
+
+        return;
+    }
+}

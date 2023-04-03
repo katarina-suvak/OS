@@ -1,0 +1,71 @@
+class Game
+{
+    field SlovoL L;
+    field int smjer;
+
+    constructor Game new()
+    {
+        do Screen.clearScreen();
+        let smjer = 0;
+        let L = SlovoL.new(200,200);
+        return this;
+    }
+
+    method void dispose()
+    {
+        do L.dispose();
+        do Memory.deAlloc(this);
+        return;
+    }
+
+    method void move()
+    {
+        if(smjer = 1)
+        {
+            do L.lijevo();
+        }
+        if (smjer = 2)
+        {
+            do L.desno();
+        }
+        if (smjer = 3)
+        {
+            do L.gore();
+        }
+        if (smjer = 4)
+        {
+            do L.dolje();
+        }
+        do Sys.wait(5);
+
+        return; 
+    }
+
+    method void runL()
+    {
+        var char key;  
+        var boolean exit;
+        let exit = false;
+        do L.draw();
+        while (~exit) 
+        {
+            while (key = 0) {
+                let key = Keyboard.keyPressed();
+            }
+
+            if (key = 140)  { let exit = true; }     // ecs key
+            if (key = 130) { let smjer = 1; }   // left arrow
+            if (key = 132) { let smjer = 2; } // right arrow
+            if (key = 131) { let smjer = 3; }   //gore
+            if (key = 133) { let smjer = 4; }  //dolje
+
+            while (~(key = 0)) {
+
+                let key = Keyboard.keyPressed();
+                do move();
+            }
+        }
+
+        return;
+    }
+}
