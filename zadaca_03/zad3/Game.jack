@@ -24,18 +24,25 @@ class Game
         {
             do L.lijevo();
         }
+
         if (smjer = 2)
         {
             do L.desno();
         }
+
         if (smjer = 3)
         {
             do L.gore();
         }
+
         if (smjer = 4)
         {
             do L.dolje();
         }
+
+        
+
+
         do Sys.wait(5);
 
         return; 
@@ -46,13 +53,16 @@ class Game
         var char key;  
         var boolean exit;
         let exit = false;
-        do L.draw();
+        do L.rot();
         while (~exit) 
         {
             while (key = 0) {
                 let key = Keyboard.keyPressed();
             }
-
+            if ((key = 82) | (key = 114)) {
+                do L.rotacija();
+                do L.rot();
+            }
             if (key = 140)  { let exit = true; }     // ecs key
             if (key = 130) { let smjer = 1; }   // left arrow
             if (key = 132) { let smjer = 2; } // right arrow
